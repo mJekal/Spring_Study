@@ -1,4 +1,4 @@
-# 싸피 1반 Spring_Study
+Spring_Study
 
 ### 8 / 4
 ### 환경 설정
