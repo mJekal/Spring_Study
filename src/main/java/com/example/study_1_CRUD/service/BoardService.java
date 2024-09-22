@@ -2,6 +2,8 @@ package com.example.study_1_CRUD.service;
 
 import com.example.study_1_CRUD.domain.Board;
 import com.example.study_1_CRUD.repository.BoardRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import jakarta.transaction.Transactional;
 
 import java.util.List;
@@ -37,5 +39,9 @@ public class BoardService {
 
     public Board findOne(Long boardId) {
         return boardRepository.findOne(boardId);
+    }
+
+    public Page<Board> findAll(Pageable pageable) {
+        return boardRepository.findAll(pageable);
     }
 }

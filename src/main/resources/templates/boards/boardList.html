@@ -40,6 +40,21 @@
                 </tr>
                 </tbody>
             </table>
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item" th:classappend="${boards.first} ? 'disabled'">
+                        <a class="page-link" th:href="@{/boards(page=${boards.number - 1})}" tabindex="-1">이전</a>
+                    </li>
+                    <li class="page-item" th:each="page : ${#numbers.sequence(1, boards.totalPages)}"
+                        th:classappend="${page == boards.number + 1} ? 'active'">
+                        <a class="page-link" th:text="${page}"
+                           th:href="@{/boards(page=${page - 1})}">1</a>
+                    </li>
+                    <li class="page-item" th:classappend="${boards.last} ? 'disabled'">
+                        <a class="page-link" th:href="@{/boards(page=${boards.number + 1})}">다음</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div> <!-- /container -->
