@@ -7,5 +7,6 @@ public interface BoardRepository {
     Board save(Board board);
     Optional<Board> findById(Long id);
     Optional<Board> findByTitle(String title);
+    Board findOne(Long id);
     List<Board> findAll();
 }

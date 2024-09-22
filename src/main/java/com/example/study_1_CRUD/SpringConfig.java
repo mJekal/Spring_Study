@@ -19,6 +19,7 @@ public class SpringConfig {
     public SpringConfig(EntityManager em){
         this.em = em;
     }
+
     @Bean
     public BoardService boardService(){
         return new BoardService(boardRepository());

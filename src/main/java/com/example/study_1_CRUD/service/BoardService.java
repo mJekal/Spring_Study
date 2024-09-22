@@ -5,7 +5,6 @@ import com.example.study_1_CRUD.repository.BoardRepository;
 import jakarta.transaction.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Transactional
 public class BoardService {
@@ -14,16 +13,25 @@ public class BoardService {
         this.boardRepository = boardRepository;
 }
 
-        public Long join(Board board) {
+    public Long join(Board board) {
         boardRepository.save(board);
         return board.getId();
+    }
+
+    public void modifyBoard(Long id, String title, String content) {
+        Board board = boardRepository.findOne(id);
+        if (board != null) {
+            board.setTitle(title);
+            board.setContent(content);
+            boardRepository.save(board);
+        }
     }
 
     public List<Board> findBoards() {
         return boardRepository.findAll();
     }
 
-    public Optional<Board> findOne(Long boardId) {
-        return boardRepository.findById(boardId);
+    public Board findOne(Long boardId) {
+        return boardRepository.findOne(boardId);
     }
 }

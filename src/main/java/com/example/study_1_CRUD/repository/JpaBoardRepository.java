@@ -16,9 +16,14 @@ public class JpaBoardRepository implements BoardRepository {
 
     @Override
     public Board save(Board board) {
-        em.persist(board);
-        return board;
+        if (board.getId() == null) {
+            em.persist(board);
+            return board;
+        } else {
+            return em.merge(board);
+        }
     }
+
 
     @Override
     public Optional<Board> findById(Long id) {
@@ -32,6 +37,10 @@ public class JpaBoardRepository implements BoardRepository {
                 .setParameter("title", title)
                 .getResultList();
         return result.stream().findAny();
+    }
+    @Override
+    public Board findOne(Long id){
+        return em.find(Board.class, id);
     }
 
     @Override
