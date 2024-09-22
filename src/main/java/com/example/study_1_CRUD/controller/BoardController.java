@@ -60,4 +60,10 @@ public class BoardController {
         boardService.modifyBoard(boardId, form.getTitle(), form.getContent());
         return "redirect:/boards";
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteBoard(@PathVariable("id") Long id) {
+        boardService.deleteBoard(id);
+        return "redirect:/boards";
+    }
 }

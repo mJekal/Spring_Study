@@ -48,4 +48,13 @@ public class JpaBoardRepository implements BoardRepository {
         return em.createQuery("select m from Board m", Board.class)
                 .getResultList();
     }
+
+    @Override
+    public void deleteById(Long id) {
+        Board board = em.find(Board.class, id);
+        if (board != null) {
+            em.remove(board);
+        }
+    }
+
 }

@@ -9,4 +9,5 @@ public interface BoardRepository {
     Optional<Board> findByTitle(String title);
     Board findOne(Long id);
     List<Board> findAll();
+    void deleteById(Long id);
 }

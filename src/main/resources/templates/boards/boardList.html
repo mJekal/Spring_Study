@@ -13,6 +13,7 @@
         <div class="card-body">
             <div class="mb-3">
                 <a class="btn btn-primary btn-lg" href="/boards/new" role="button">글 작성하기</a>
+                <a class="btn btn-primary btn-lg" href="/" role="button">홈으로</a>
             </div>
             <table class="table table-hover">
                 <thead class="thead-light">
@@ -33,7 +34,7 @@
                            th:href="@{/boards/{id}/edit(id=${board.id})}">수정</a>
 
                         <a class="btn btn-sm btn-danger"
-                           th:href="@{/boards/{id}/delete(id=${board.id})}"
+                           th:href="@{/delete/{id}(id=${board.id})}"
                            onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
                     </td>
                 </tr>
