@@ -1,3 +1,4 @@
+/**
 package com.example.study_1_CRUD.repository;
 
 import com.example.study_1_CRUD.domain.Board;
@@ -73,3 +74,4 @@ public class JpaBoardRepository implements BoardRepository {
         }
     }
 }
+   **/

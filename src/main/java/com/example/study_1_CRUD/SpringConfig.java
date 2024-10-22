@@ -1,32 +1,21 @@
 package com.example.study_1_CRUD;
 
 import com.example.study_1_CRUD.repository.BoardRepository;
-import com.example.study_1_CRUD.repository.JpaBoardRepository;
 import com.example.study_1_CRUD.service.BoardService;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SpringConfig {
 
-    @PersistenceContext
-    private EntityManager em;
+    private final BoardRepository boardRepository;
 
-    @Autowired
-    public SpringConfig(EntityManager em){
-        this.em = em;
+    public SpringConfig(BoardRepository boardRepository) {
+        this.boardRepository = boardRepository;
     }
 
     @Bean
     public BoardService boardService(){
-        return new BoardService(boardRepository());
-    }
-
-    @Bean
-    public BoardRepository boardRepository(){
-        return new JpaBoardRepository(em);
+        return new BoardService(boardRepository);
     }
 }

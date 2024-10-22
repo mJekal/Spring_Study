@@ -1,11 +1,14 @@
 package com.example.study_1_CRUD.repository;
+
 import com.example.study_1_CRUD.domain.Board;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
-public interface BoardRepository {
+@Repository
+public interface BoardRepository extends JpaRepository<Board, Long> {
+    // Optional<Board> findByTitle(String title);
+    /**
     Board save(Board board);
     Optional<Board> findById(Long id);
     Optional<Board> findByTitle(String title);
@@ -13,4 +16,5 @@ public interface BoardRepository {
     List<Board> findAll();
     void deleteById(Long id);
     Page<Board> findAll(Pageable pageable);
+     **/
 }

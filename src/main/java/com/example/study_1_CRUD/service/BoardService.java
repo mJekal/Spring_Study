@@ -7,13 +7,15 @@ import org.springframework.data.domain.Pageable;
 import jakarta.transaction.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 public class BoardService {
     private final BoardRepository boardRepository;
+
     public BoardService(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
-}
+    }
 
     public Long join(Board board) {
         boardRepository.save(board);
@@ -21,8 +23,9 @@ public class BoardService {
     }
 
     public void modifyBoard(Long id, String title, String content) {
-        Board board = boardRepository.findOne(id);
-        if (board != null) {
+        Optional<Board> optionalBoard = boardRepository.findById(id); // findOne() -> findById()
+        if (optionalBoard.isPresent()) {
+            Board board = optionalBoard.get();
             board.setTitle(title);
             board.setContent(content);
             boardRepository.save(board);
@@ -37,8 +40,8 @@ public class BoardService {
         return boardRepository.findAll();
     }
 
-    public Board findOne(Long boardId) {
-        return boardRepository.findOne(boardId);
+    public Optional<Board> findById(Long id) {
+        return boardRepository.findById(id);
     }
 
     public Page<Board> findAll(Pageable pageable) {
