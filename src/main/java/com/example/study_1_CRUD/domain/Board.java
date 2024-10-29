@@ -6,6 +6,9 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import jakarta.persistence.ManyToOne;
+import com.example.study_1_CRUD.domain.Users;
+
 
 @Entity
 @Getter @Setter
@@ -20,4 +23,6 @@ public class Board {
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 
+    @ManyToOne
+    private Users author;
 }
